@@ -10,9 +10,20 @@
 
 
 	//TODO FUNCTION COMMENT
+/*
+Purpose: to parse the user input and determine if it was correct input
+Input: the input from the user
+       the cmd array of different possible commands
+Return: true if the command was valid
+        false if the command was not valid
+*/
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (!input || !cmd)
+	{
+		return false;
+	}
 
 	char *string = strdup(input);
 	
@@ -37,10 +48,18 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 }
 
 	//TODO FUNCTION COMMENT
+/*
+Purpose: To deallocate memory associated with the cmd array
+Input: the cmd array
+Return: void
+*/
 void destroy_commands(Commands_t** cmd) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
-	
+	if (!cmd)
+	{
+		return;
+	}
 	for (int i = 0; i < (*cmd)->num_cmds; ++i) {
 		free((*cmd)->cmds[i]);
 	}
